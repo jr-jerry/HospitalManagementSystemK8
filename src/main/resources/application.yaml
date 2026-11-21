@@ -1,0 +1,9 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: HospitalManagementSyste
+
+
+ENV_VALUE: ${ENV_VALUE}
+

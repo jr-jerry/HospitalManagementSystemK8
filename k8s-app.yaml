@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-obj-hello-spring-boot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      apps: pod-hello-spring-boot
+  template:
+    metadata:
+      labels:
+        apps: pod-hello-spring-boot
+    spec:
+      containers:
+        - name: container-hello-spring-boot
+          image: hello-spring-boot:1.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENV_VALUE
+              value: "Message from K8"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: network-service-hello-spring-boot
+spec:
+  type: NodePort
+  selector:
+    apps: pod-hello-spring-boot
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30080
