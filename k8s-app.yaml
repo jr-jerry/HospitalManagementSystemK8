@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: deployment-obj-hello-spring-boot
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       apps: pod-hello-spring-boot
@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
         - name: container-hello-spring-boot
-          image: hello-spring-boot:1.0
-          imagePullPolicy: Never
+          image: developergautam41/repo-my-app:1.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           env:
